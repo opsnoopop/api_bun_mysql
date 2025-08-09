@@ -43,7 +43,7 @@ docker compose up -d --build
 ### 4. Create table users
 ```bash
 docker exec -i container_mysql mysql -u'testuser' -p'testpass' testdb -e "
-CREATE TABLE testdb.users (
+CREATE TABLE IF NOT EXISTS testdb.users (
   user_id INT NOT NULL AUTO_INCREMENT ,
   username VARCHAR(50) NOT NULL ,
   email VARCHAR(100) NOT NULL ,
@@ -178,7 +178,7 @@ sysbench \
 --mysql-db="testdb" \
 --tables=10 \
 --table-size=100000 \
-oltp_read_write run;
+oltp_read_write run > sysbench_raw_$(date +"%Y%m%d_%H%M%S").txt
 ```
 
 ### sysbench step 3 cleanup
@@ -258,15 +258,13 @@ docker run \
 ### Truncate table users
 ```bash
 docker exec -i container_mysql mysql -u'root' -p'password' testdb -e "
-Truncate testdb.users;
-"
+Truncate testdb.users;"
 ```
 
 ### Delete table users
 ```bash
 docker exec -i container_mysql mysql -u'root' -p'password' testdb -e "
-DELETE FROM testdb.users;
-"
+DELETE FROM testdb.users;"
 ```
 
 ### Stop the Application
