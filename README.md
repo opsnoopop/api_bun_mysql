@@ -8,7 +8,7 @@ A simple Bun API application and MySQL, containerized with Docker.
 **Bun Container: FROM oven/bun:1**
 - OS Alpine Linux 3.20.6
 - Bun: 1.2.18
-- MySQL2: 3.14.1
+- MySQL2: 3.14.1 # bun add mysql2
 
 **MySQL Container: FROM mysql:8.4.5**
 - OS Oracle Linux Server: 9.6
@@ -215,7 +215,7 @@ docker run \
 --network global_bun \
 -v ./k6/:/k6/ \
 grafana/k6:1.1.0 \
-run /k6/k6_bun_health_check.js
+run /k6/k6_health_check.js
 ```
 
 ### grafana/k6 test Insert Create user
@@ -227,7 +227,7 @@ docker run \
 --network global_bun \
 -v ./k6/:/k6/ \
 grafana/k6:1.1.0 \
-run /k6/k6_bun_create_user.js
+run /k6/k6_create_user.js
 ```
 
 ### grafana/k6 test Select Get user by id
@@ -239,7 +239,7 @@ docker run \
 --network global_bun \
 -v ./k6/:/k6/ \
 grafana/k6:1.1.0 \
-run /k6/k6_bun_get_user_by_id.js
+run /k6/k6_get_user_by_id.js
 ```
 
 ### check entrypoint grafana/k6

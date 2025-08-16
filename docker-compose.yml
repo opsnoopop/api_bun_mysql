@@ -5,6 +5,7 @@ services:
       dockerfile: Dockerfile
     image: oven/bun:1_alpine_custom
     container_name: container_bun
+    restart: always
     ports:
       - "3001:3000"
     depends_on:
@@ -18,6 +19,7 @@ services:
   database:
     image: mysql:8.4.5
     container_name: container_mysql
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: rootpass
       MYSQL_DATABASE: testdb

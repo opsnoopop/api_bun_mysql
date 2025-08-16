@@ -11,4 +11,5 @@ COPY . .
 RUN bun install
 
 # Run API
+# bun run index.ts
 CMD ["bun", "index.ts"]
