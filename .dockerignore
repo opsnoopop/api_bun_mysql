@@ -8,3 +8,5 @@ docker-compose.yml
 k6/
 node_modules/
 mysql/
+mysql_initdb/
+test*.sh
