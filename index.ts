@@ -1,6 +1,7 @@
 import mysql from "mysql2/promise";
 import { serve } from "bun";
 
+// สร้าง connection pool
 const pool = mysql.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -21,7 +22,7 @@ serve({
 
     if (req.method === "GET" && new URL(req.url).pathname === "/") {
 
-      return new Response(JSON.stringify({ message: "Hello World from Bun"}), {
+      return new Response(JSON.stringify({ message: "Hello World from Bun (MySQL)"}), {
         headers: { "Content-Type": "application/json" },
       });
       
